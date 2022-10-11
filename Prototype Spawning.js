@@ -25,7 +25,7 @@ module.exports = function() {
             
             var numberOfParts = Math.floor(((energy - 150) / 100));
             numberOfParts = Math.min(numberOfParts, 47)
-            var body = [CARRY,CARRY, MOVE];
+            var body = [CARRY, CARRY, CARRY];
             for (let i = 0; i < numberOfParts; i++) {
                 body.push(WORK);
             }
