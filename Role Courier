@@ -1,0 +1,35 @@
+module.exports = {
+	run: function(creep) {
+        if(creep.memory.working == false && creep.carry.energy == creep.carryCapacity){
+        creep.memory.working = true
+        } else if(creep.memory.working == true && creep.carry.energy == 0){
+        	creep.memory.working = false
+        }
+        let container = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+        	   filter: (c) => c.structureType == STRUCTURE_CONTAINER && c.store[RESOURCE_ENERGY] <= c.storeCapacity
+    	});
+    	let spawn = creep.pos.findClosestByPath(FIND_STRUCTURES, { 
+    	filter: (c) => c.structureType == STRUCTURE_SPAWN});
+    	let source = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE)
+    	let helped = creep.pos.findClosestByPath(FIND_MY_CREEPS, {
+        	   filter: (c) => c.memory.help == true});
+    	if(helped) {
+    	    if (creep.pull(helped) == ERR_NOT_IN_RANGE){
+    	        creep.moveTo(helped)
+    	    } else {
+    	        if(creep.pos.inRangeTo(source,1)){
+    	            creep.moveTo(spawn)
+    	            creep.pull(helped)
+    	        }
+    	        creep.say(creep.moveTo(spawn))
+    	        creep.pull(helped)
+    	        creep.moveTo(source)
+    	       
+    	    }
+    	} 
+    	
+    	if(creep.memory.working == false) {
+    	    
+    	}
+	}
+};
