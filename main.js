@@ -8,12 +8,6 @@ module.exports.loop = function () {
             delete Memory.creeps[i];
         }
     }
-    Game.market.createOrder({
-    type: ORDER_SELL,
-    resourceType: PIXEL,
-    price: 1000000,
-    totalAmount: 1,
-    });
     for(let spawn in Game.spawns){
         for(let creep in Game.creeps){
             creep = Game.creeps[creep]
@@ -33,10 +27,21 @@ module.exports.loop = function () {
         let numberOfCouriers = _.sum(creepsInRoom, (c) => c.memory.role == 'Courier');
         console.log(numberOfCouriers + " Couriers")
         
-        if(spawn.room.controller.level >= 1){
+        if(spawn.room.controller.level == 1){
             let minNumberHarvesters = 1 
             let minNumberCouriers = 2
-            let minNumberUpgraders = 1
+            let minNumberUpgraders = 3
+            if(minNumberHarvesters > numberOfHarvesters){
+                spawn.createCustomHarvester(300, "Harvester")   
+            } else if (minNumberCouriers > numberOfCouriers){
+                spawn.createCustomCourier(200, "Courier")
+            } else if (minNumberUpgraders > numberOfUpgraders){
+                spawn.createCustomHarvester(300, "Upgrader")
+            }
+        } else if(spawn.room.controller.level < 4){
+            let minNumberHarvesters = 1 
+            let minNumberCouriers = 2
+            let minNumberUpgraders = 3
             if(minNumberHarvesters > numberOfHarvesters){
                 spawn.createCustomHarvester(300, "Harvester")   
             } else if (minNumberCouriers > numberOfCouriers){
