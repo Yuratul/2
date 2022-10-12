@@ -8,12 +8,11 @@ module.exports = {
         	   filter: (c) => c.memory.role == "Courier"});
         let controller = creep.room.controller
     	if(creep.memory.working == false) {
-    	    if(creep.upgrade(controller)== ERR_NOT_IN_RANGE) {
+    	    if(creep.upgradeController(controller)== ERR_NOT_IN_RANGE) {
     	        creep.memory.help = true;
     	        creep.move(helper)
-    	        creep.say(creep.move(helper))
     	    } else {
-    	        creep.upgrade(controller)
+    	        creep.upgradeController(controller)
     	        creep.memory.help = false;
     	    }
     	} 
