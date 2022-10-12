@@ -1,6 +1,6 @@
   
 module.exports = function() {
-
+    random = Math.random();
     StructureSpawn.prototype.createCustomCreep =
         function(energy, roleName) {
             
@@ -18,7 +18,7 @@ module.exports = function() {
             }
 
 
-            return this.spawnCreep(body, roleName, {memory: {role: roleName, working: false} });
+            return this.spawnCreep(body, roleName+random, {memory: {role: roleName, working: false} });
         };
         StructureSpawn.prototype.createCustomHarvester =
         function(energy, roleName) {
@@ -29,7 +29,7 @@ module.exports = function() {
             for (let i = 0; i < numberOfParts; i++) {
                 body.push(WORK);
             }
-            return this.spawnCreep(body, roleName, {memory: {role: roleName, working: false} });
+            return this.spawnCreep(body, roleName+random, {memory: {role: roleName, working: false} });
         };
     StructureSpawn.prototype.createCustomPatroller =
         function(energy) {
@@ -45,7 +45,7 @@ module.exports = function() {
             }
 
 
-            return this.spawnCreep(body, roleName, {memory:{role: 'patroller'}});
+            return this.spawnCreep(body, roleName+random, {memory:{role: 'patroller'}});
         };
       StructureSpawn.prototype.createCustomCourier =
         function(energy, roleName) {
@@ -61,7 +61,7 @@ module.exports = function() {
             }
 
 
-            return this.spawnCreep(body, roleName, {memory: {role: roleName, working: false}});
+            return this.spawnCreep(body, roleName+random, {memory: {role: roleName, working: false}});
         };
         
     
