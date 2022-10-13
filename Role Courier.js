@@ -57,18 +57,17 @@ module.exports = {
                     creep.moveTo(harvester)
                 }
             } else {
+                console.log(upgrader)
                 if(spawn){
-                    console.log(creep.transfer(spawn, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE)
-                    console.log(creep.transfer[spawn, RESOURCE_ENERGY])
                     if(creep.transfer(spawn, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
                         creep.moveTo(spawn)
                         console.log(2)
                     }
                 } else if(extensions){
-                    if(creep.transfer(spawn, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE)
+                    if(creep.transfer(extensions, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE)
                         creep.moveTo(extensions)
                 } else if (upgrader){
-                    if(creep.transfer(spawn, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
+                    if(creep.transfer(upgrader, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
                         creep.moveTo(upgrader)
                     }
                 }
