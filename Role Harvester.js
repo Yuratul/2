@@ -21,7 +21,12 @@ module.exports = {
     	        creep.memory.help = false;
     	    }
     	} else {
-    	    creep.transfer(helper, RESOURCE_ENERGY)
+    	    if(container){
+    	        
+    	    }
+    	    else {
+    	        creep.transfer(helper, RESOURCE_ENERGY)
+    	    }
     	}
 	}
 };
